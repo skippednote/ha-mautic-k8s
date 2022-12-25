@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: mysql
+  name: mysql
+  namespace: default
+spec:
+  containers:
+  - env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: root
+    image: mysql
+    name: mysql
+    volumeMounts:
+    - mountPath: /var/lib/mysql
+      name: db-pvc
+    ports:
+    - containerPort: 3306
+  volumes:
+  - name: db-pvc
+    persistentVolumeClaim:
+      claimName: nfs-db-pvc

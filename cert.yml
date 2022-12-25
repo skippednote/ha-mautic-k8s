@@ -1,0 +1,19 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: do-dns
+spec:
+  dnsNames:
+  - '*.skippednote.dev'
+  issuerRef:
+    group: cert-manager.io
+    kind: Issuer
+    name: mautic-issuer
+  secretName: digitalocean-dns
+  usages:
+  - digital signature
+  - key encipherment
